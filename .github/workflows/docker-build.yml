@@ -6,6 +6,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      # 设置 Node.js 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14 # 选择合适的 Node.js 版本
+      # 安装项目依赖
+      - name: Install Dependencies
+        run: npm install
+      # 构建项目
+      - name: Build
+        run: npm run build
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -22,4 +33,4 @@ jobs:
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: suntianxiang1/vue-image:3.0
+          tags: suntianxiang1/vue-image:4.0
